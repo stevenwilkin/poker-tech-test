@@ -56,4 +56,24 @@ describe Hand do
       end
     end
   end
+
+  describe ".<=>" do
+    context "high cards of differing values" do
+      let(:highcard_AS) { Hand.new("2S 2S 8S TS AS") }
+      let(:highcard_QC) { Hand.new("2C 2C 8C TC QC") }
+
+      it "AS > QS" do
+        highcard_AS.should be > highcard_QC
+      end
+    end
+
+    context "high cards with same value" do
+      let(:highcard_8S) { Hand.new("2S 2S 8S TS AS") }
+      let(:highcard_7C) { Hand.new("2C 2C 7C TC AC") }
+
+      it "8S > 7C" do
+        highcard_8S.should be > highcard_7C
+      end
+    end
+  end
 end
