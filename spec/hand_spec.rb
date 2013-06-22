@@ -309,6 +309,35 @@ describe Hand do
       end
     end
 
+    context "two two pairs" do
+      context "different highest pair" do
+        let(:two_pairs_1) { Hand.new("2S 2D 8C AH AS") }
+        let(:two_pairs_2) { Hand.new("3S 3D 8C QH QS") }
+
+        it "wins by highest pair" do
+          two_pairs_1.should be > two_pairs_2
+        end
+      end
+
+      context "same highest pair but different other pairr" do
+        let(:two_pairs_1) { Hand.new("2S 2D 8C AH AS") }
+        let(:two_pairs_2) { Hand.new("3S 3D 8C AH AS") }
+
+        it "wins by second highest pair" do
+          two_pairs_2.should be > two_pairs_1
+        end
+      end
+
+      context "equal highest pairs" do
+        let(:two_pairs_1) { Hand.new("2S 2D 5C AH AS") }
+        let(:two_pairs_2) { Hand.new("2S 2D 8C AH AS") }
+
+        it "wins by the remaining card" do
+          two_pairs_2.should be > two_pairs_1
+        end
+      end
+    end
+
     context "two high cards" do
       context "with differing values" do
         let(:highcard_AS) { Hand.new("2D 3S 8S TS AS") }
