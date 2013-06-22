@@ -57,6 +57,32 @@ describe Hand do
     end
   end
 
+  describe "two_pairs" do
+    context "without 2 pairs" do
+      let(:hand) { Hand.new("2S 4D 8C TH AS") }
+
+      it "is nil" do
+        hand.two_pairs.should be_nil
+      end
+    end
+
+    context "with 2 pairs" do
+      let(:hand) { Hand.new("2S 2D 8C AH AS") }
+
+      it "returns 2 pairs" do
+        hand.two_pairs.should have(2).items
+      end
+
+      it "returns the first pair" do
+        hand.two_pairs.first.should == [Card.new("2D"), Card.new("2S")]
+      end
+
+      it "returns the second pair" do
+        hand.two_pairs.last.should == [Card.new("AH"), Card.new("AS")]
+      end
+    end
+  end
+
   describe ".<=>" do
     context "high cards of differing values" do
       let(:highcard_AS) { Hand.new("2S 2S 8S TS AS") }
