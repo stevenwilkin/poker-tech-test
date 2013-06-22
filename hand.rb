@@ -136,4 +136,11 @@ class Hand
 
     fours.first <=> other_fours.first
   end
+
+  def compare_full_house(items, other_items)
+    threes = three_of_a_kind_from_array(items)
+    other_threes = three_of_a_kind_from_array(other_items)
+
+    threes.first <=> other_threes.first
+  end
 end

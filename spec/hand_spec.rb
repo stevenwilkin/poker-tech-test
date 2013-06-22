@@ -273,6 +273,15 @@ describe Hand do
       end
     end
 
+    context "two full houses" do
+      let(:full_house_1) { Hand.new("2S 2D 2C 5H 5S") }
+      let(:full_house_2) { Hand.new("3S 3D 3C 5H 5S") }
+
+      it "wins by the value of the 3 cards" do
+        full_house_2.should be > full_house_1
+      end
+    end
+
     context "two high cards" do
       context "with differing values" do
         let(:highcard_AS) { Hand.new("2D 3S 8S TS AS") }
