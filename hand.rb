@@ -56,6 +56,12 @@ class Hand
     @cards
   end
 
+  def flush
+    return unless straight
+    return unless @cards.map(&:suit).uniq.count == 1
+    @cards
+  end
+
   private
 
   def high_card_from_array(items)
