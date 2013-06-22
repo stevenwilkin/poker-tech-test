@@ -47,5 +47,23 @@ describe Card do
         cards["6C"].should be == cards["6D"]
       end
     end
+
+    context "2 face cards" do
+      it "JC < QS" do
+        cards["JC"].should be < cards["QS"]
+      end
+
+      it "QS < KS" do
+        cards["QS"].should be < cards["KS"]
+      end
+
+      it "KS < AS" do
+        cards["KS"].should be < cards["AS"]
+      end
+
+      it "AS == AC" do
+        cards["AS"].should be == cards["AC"]
+      end
+    end
   end
 end
