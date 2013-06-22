@@ -291,6 +291,15 @@ describe Hand do
       end
     end
 
+    context "two straights" do
+      let(:straight_1) { Hand.new("2S 3D 4C 5H 6S") }
+      let(:straight_2) { Hand.new("3D 4C 5H 6S 7S") }
+
+      it "wins by high card" do
+        straight_2.should be > straight_1
+      end
+    end
+
     context "two high cards" do
       context "with differing values" do
         let(:highcard_AS) { Hand.new("2D 3S 8S TS AS") }
