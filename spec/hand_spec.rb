@@ -129,7 +129,7 @@ describe Hand do
     end
 
     context "with a flush" do
-      let(:hand) { Hand.new("2S 3S 4S 5S 6S") }
+      let(:hand) { Hand.new("2S 3S 5S TS AS") }
 
       it "returns the flush" do
         hand.flush.sort.should == hand.cards.sort
