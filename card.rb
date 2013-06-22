@@ -11,7 +11,11 @@ class Card
     @suit = name[1]
   end
 
+  def rank
+    VALUES.index(@value)
+  end
+
   def <=>(other)
-    VALUES.index(@value) <=> VALUES.index(other.value)
+    self.rank <=> other.rank
   end
 end

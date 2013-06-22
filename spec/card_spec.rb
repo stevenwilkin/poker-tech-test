@@ -24,7 +24,17 @@ describe Card do
     end
   end
 
-  describe "#<=>" do
+  describe ".rank" do
+    let(:card_2C) { Card.new("2C") }
+    let(:card_AC) { Card.new("AC") }
+
+    it "returns the rank for the card within the suit" do
+      card_2C.rank.should == 0
+      card_AC.rank.should == 12
+    end
+  end
+
+  describe ".<=>" do
     let(:suits) { %w{C D H S} }
     let(:values) { %w{2 3 4 5 6 7 8 9 T J Q K A} }
     let(:cards) do
