@@ -101,7 +101,7 @@ describe Hand do
     end
   end
 
-  describe "" do
+  describe ".straight" do
     context "without a straight" do
       let(:hand) { Hand.new("2S 4D 8C TH AS") }
 
