@@ -83,6 +83,24 @@ describe Hand do
     end
   end
 
+  describe "three of a kind" do
+    context "without three of a kind" do
+      let(:hand) { Hand.new("2S 4D 8C TH AS") }
+
+      it "is nil" do
+        hand.three_of_a_kind.should be_nil
+      end
+    end
+
+    context "with three of a kind" do
+      let(:hand) { Hand.new("2S 2D 2C TH AS") }
+
+      it "returns 3 cards" do
+        hand.three_of_a_kind.sort.should == make_cards("2S 2D 2C").sort
+      end
+    end
+  end
+
   describe ".<=>" do
     context "high cards of differing values" do
       let(:highcard_AS) { Hand.new("2S 2S 8S TS AS") }

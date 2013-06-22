@@ -40,6 +40,15 @@ class Hand
     end
   end
 
+  def three_of_a_kind
+    the_pair = pair_from_array(@cards)
+    return nil unless the_pair
+    remainder = @cards - the_pair
+    remainder.each do |card|
+      return ([card] + the_pair) if the_pair.member? card
+    end
+  end
+
   private
 
   def high_card_from_array(items)
