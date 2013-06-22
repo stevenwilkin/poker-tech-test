@@ -6,4 +6,8 @@ class Hand
       Card.new(name)
     end
   end
+
+  def high_card
+    @cards.sort.last
+  end
 end

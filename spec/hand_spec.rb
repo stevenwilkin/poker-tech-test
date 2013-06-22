@@ -29,4 +29,13 @@ describe Hand do
       end
     end
   end
+
+  describe "high_card" do
+    let(:cards) { "2S 4D 8C AS TH" }
+    let(:hand) { Hand.new(cards) }
+
+    it "is the AS" do
+      hand.high_card.should == Card.new("AS")
+    end
+  end
 end
