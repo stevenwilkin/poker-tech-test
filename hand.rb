@@ -39,12 +39,7 @@ class Hand
   end
 
   def two_pairs
-    first_pair = pair_from_array(cards)
-    return nil unless first_pair
-    second_pair = pair_from_array(cards - first_pair)
-    if second_pair
-      [first_pair, second_pair]
-    end
+    two_pairs_from_array(@cards)
   end
 
   def three_of_a_kind
@@ -71,9 +66,7 @@ class Hand
   end
 
   def four_of_a_kind
-    return unless two_pairs
-    return unless two_pairs.first.first == two_pairs.last.last
-    two_pairs.flatten
+    four_of_a_kind_from_array(@cards)
   end
 
   def straight_flush
@@ -95,6 +88,15 @@ class Hand
     nil
   end
 
+  def two_pairs_from_array(items)
+    first_pair = pair_from_array(items)
+    return unless first_pair
+    second_pair = pair_from_array(items - first_pair)
+    if second_pair
+      [first_pair, second_pair]
+    end
+  end
+
   def three_of_a_kind_from_array(items)
     the_pair = pair_from_array(items)
     return nil unless the_pair
@@ -103,6 +105,13 @@ class Hand
       return ([card] + the_pair) if the_pair.member? card
     end
     nil
+  end
+
+  def four_of_a_kind_from_array(items)
+    pairs = two_pairs_from_array(items)
+    return unless pairs
+    return unless pairs.first.first == pairs.last.last
+    pairs.flatten
   end
 
   def compare_high_card(items, other_items)
@@ -119,5 +128,12 @@ class Hand
 
   def compare_straight_flush(items, other_items)
     compare_high_card(items, other_items)
+  end
+
+  def compare_four_of_a_kind(items, other_items)
+    fours = four_of_a_kind_from_array(items)
+    other_fours = four_of_a_kind_from_array(other_items)
+
+    fours.first <=> other_fours.first
   end
 end

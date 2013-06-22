@@ -264,7 +264,16 @@ describe Hand do
       end
     end
 
-    context "high cards" do
+    context "two four of a kinds" do
+      let(:four_of_a_kind_1) { Hand.new("3S 3D 3C 3H 6S") }
+      let(:four_of_a_kind_2) { Hand.new("2S 2D 2C 2H 6S") }
+
+      it "wins by the value of the 4 cards" do
+        four_of_a_kind_1.should be > four_of_a_kind_2
+      end
+    end
+
+    context "two high cards" do
       context "with differing values" do
         let(:highcard_AS) { Hand.new("2D 3S 8S TS AS") }
         let(:highcard_QC) { Hand.new("2S 3C 8C TC QC") }
