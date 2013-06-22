@@ -159,4 +159,18 @@ class Hand
   def compare_two_pairs(items, other_items)
     compare_high_card(items, other_items)
   end
+
+  def compare_pair(items, other_items)
+    the_pair = pair_from_array(items)
+    the_other_pair = pair_from_array(other_items)
+
+    if the_pair.first != the_other_pair.first
+      return the_pair.first <=> the_other_pair.first
+    end
+
+    remainder = items - the_pair
+    other_remainder = other_items - the_other_pair
+
+    compare_high_card(remainder, other_remainder)
+  end
 end
