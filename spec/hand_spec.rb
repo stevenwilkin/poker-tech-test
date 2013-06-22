@@ -137,6 +137,24 @@ describe Hand do
     end
   end
 
+  describe ".full_house" do
+    context "without a full_house" do
+      let(:hand) { Hand.new("2S 2D 2C 5H 6S") }
+
+      it "is nil" do
+        hand.full_house.should be_nil
+      end
+    end
+
+    context "with a full_house" do
+      let(:hand) { Hand.new("2S 2D 2C 5H 5S") }
+
+      it "returns the full_house" do
+        hand.full_house.sort.should == hand.cards.sort
+      end
+    end
+  end
+
   describe ".<=>" do
     context "high cards of differing values" do
       let(:highcard_AS) { Hand.new("2S 2S 8S TS AS") }

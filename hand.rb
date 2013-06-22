@@ -41,12 +41,7 @@ class Hand
   end
 
   def three_of_a_kind
-    the_pair = pair_from_array(@cards)
-    return nil unless the_pair
-    remainder = @cards - the_pair
-    remainder.each do |card|
-      return ([card] + the_pair) if the_pair.member? card
-    end
+    three_of_a_kind_from_array(@cards)
   end
 
   def straight
@@ -59,6 +54,13 @@ class Hand
   def flush
     return unless straight
     return unless @cards.map(&:suit).uniq.count == 1
+    @cards
+  end
+
+  def full_house
+    triple = three_of_a_kind
+    return unless triple
+    return unless pair_from_array(@cards - triple)
     @cards
   end
 
@@ -75,5 +77,14 @@ class Hand
       end
     end
     nil
+  end
+
+  def three_of_a_kind_from_array(items)
+    the_pair = pair_from_array(items)
+    return nil unless the_pair
+    remainder = items - the_pair
+    remainder.each do |card|
+      return ([card] + the_pair) if the_pair.member? card
+    end
   end
 end
