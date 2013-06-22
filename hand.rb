@@ -157,7 +157,27 @@ class Hand
   end
 
   def compare_two_pairs(items, other_items)
-    compare_high_card(items, other_items)
+    the_two_pairs = two_pairs_from_array(items)
+    other_two_pairs = two_pairs_from_array(other_items)
+
+    highest_pair = [the_two_pairs.first.first, the_two_pairs.last.last].sort.last
+    other_highest_pair = [other_two_pairs.first.first, other_two_pairs.last.last].sort.last
+
+    if highest_pair != other_highest_pair
+      return highest_pair <=> other_highest_pair
+    end
+
+    lowest_pair = [the_two_pairs.first.first, the_two_pairs.last.last].sort.first
+    other_lowest_pair = [other_two_pairs.first.first, other_two_pairs.last.last].sort.first
+
+    if lowest_pair != other_lowest_pair
+      return lowest_pair <=> other_lowest_pair
+    end
+
+    remainder = (items - the_two_pairs.flatten).first
+    other_remainder = (other_items - other_two_pairs.flatten).first
+
+    remainder <=> other_remainder
   end
 
   def compare_pair(items, other_items)
