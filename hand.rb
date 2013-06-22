@@ -151,4 +151,8 @@ class Hand
   def compare_straight(items, other_items)
     compare_high_card(items, other_items)
   end
+
+  def compare_three_of_a_kind(items, other_items)
+    compare_high_card(items, other_items)
+  end
 end

@@ -300,6 +300,15 @@ describe Hand do
       end
     end
 
+    context "two three of a kinds" do
+      let(:three_of_a_kind_1) { Hand.new("2S 2D 2C TH AS") }
+      let(:three_of_a_kind_2) { Hand.new("3S 3D 3C TH AS") }
+
+      it "wins by high card" do
+        three_of_a_kind_2.should be > three_of_a_kind_1
+      end
+    end
+
     context "two high cards" do
       context "with differing values" do
         let(:highcard_AS) { Hand.new("2D 3S 8S TS AS") }
