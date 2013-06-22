@@ -13,7 +13,11 @@ class Hand
   end
 
   def <=>(other)
-    self.highest_combination_rank <=> other.highest_combination_rank
+    if self.highest_combination_rank != other.highest_combination_rank
+      return self.highest_combination_rank <=> other.highest_combination_rank
+    end
+
+    return self.send(:"compare_#{self.highest_combination}", @cards, other.cards)
   end
 
   def highest_combination
@@ -99,5 +103,17 @@ class Hand
       return ([card] + the_pair) if the_pair.member? card
     end
     nil
+  end
+
+  def compare_high_card(items, other_items)
+    loop do
+      my_high_card = high_card_from_array(items)
+      other_high_card = high_card_from_array(other_items)
+      if my_high_card != other_high_card
+        return my_high_card <=> other_high_card
+      else
+        return compare_high_card(items - [my_high_card], other_items - [other_high_card])
+      end
+    end
   end
 end

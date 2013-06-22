@@ -254,5 +254,25 @@ describe Hand do
     it "pair wins against a high card" do
       pair.should be > high_card
     end
+
+    context "high cards" do
+      context "with differing values" do
+        let(:highcard_AS) { Hand.new("2D 3S 8S TS AS") }
+        let(:highcard_QC) { Hand.new("2S 3C 8C TC QC") }
+
+        it "AS > QS" do
+          highcard_AS.should be > highcard_QC
+        end
+      end
+
+      context "with the same value" do
+        let(:highcard_8S) { Hand.new("2D 3S 8S TS AS") }
+        let(:highcard_7C) { Hand.new("2S 3C 7C TC AC") }
+
+        it "8S > 7C" do
+          highcard_8S.should be > highcard_7C
+        end
+      end
+    end
   end
 end
