@@ -39,20 +39,20 @@ describe Hand do
     end
   end
 
-  describe ".has_a_pair?" do
+  describe ".pair" do
     context "without a pair" do
       let(:hand) { Hand.new("2S 4D 8C TH AS") }
 
-      it "is false" do
-        hand.should_not have_a_pair
+      it "is nil" do
+        hand.pair.should be_nil
       end
     end
 
     context "with a pair" do
       let(:hand) { Hand.new("2S 2D 8C TH AS") }
 
-      it "is true" do
-        hand.should have_a_pair
+      it "returns the pair" do
+        hand.pair.sort.should == [Card.new("2S"), Card.new("2D")].sort
       end
     end
   end

@@ -11,7 +11,12 @@ class Hand
     @cards.sort.last
   end
 
-  def has_a_pair?
-    @cards.uniq { |card| card.value }.count == 4
+  def pair
+    @cards.each do |card|
+      (@cards.dup - [card]).each do |other|
+        return [card, other] if card == other
+      end
+    end
+    nil
   end
 end
