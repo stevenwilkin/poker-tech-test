@@ -64,6 +64,12 @@ class Hand
     @cards
   end
 
+  def four_of_a_kind
+    return unless two_pairs
+    return unless two_pairs.first.first == two_pairs.last.last
+    two_pairs.flatten
+  end
+
   private
 
   def high_card_from_array(items)

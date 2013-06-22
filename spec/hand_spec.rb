@@ -155,6 +155,24 @@ describe Hand do
     end
   end
 
+  describe ".four_of_a_kind" do
+    context "without a four_of_a_kind" do
+      let(:hand) { Hand.new("2S 2D 2C 5H 6S") }
+
+      it "is nil" do
+        hand.four_of_a_kind.should be_nil
+      end
+    end
+
+    context "with a four_of_a_kind" do
+      let(:hand) { Hand.new("2S 2D 2C 2H 6S") }
+
+      it "returns the four_of_a_kind" do
+        hand.four_of_a_kind.sort.should == make_cards("2S 2D 2C 2H").sort
+      end
+    end
+  end
+
   describe ".<=>" do
     context "high cards of differing values" do
       let(:highcard_AS) { Hand.new("2S 2S 8S TS AS") }
