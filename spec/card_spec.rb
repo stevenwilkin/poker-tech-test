@@ -23,4 +23,29 @@ describe Card do
       card.suit.should == suit
     end
   end
+
+  describe "#<=>" do
+    let(:suits) { %w{C D H S} }
+    let(:values) { %w{2 3 4 5 6 7 8 9 T J Q K A} }
+    let(:cards) do
+      result = {}
+      suits.each do |suit|
+        values.each do |value|
+          name = "#{value}#{suit}"
+          result[name] = Card.new(name)
+        end
+      end
+      result
+    end
+
+    context "2 number cards" do
+      it "2C < 9S" do
+        cards["2C"].should be < cards["9S"]
+      end
+
+      it "6C == 6D" do
+        cards["6C"].should be == cards["6D"]
+      end
+    end
+  end
 end
