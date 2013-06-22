@@ -70,6 +70,10 @@ class Hand
     two_pairs.flatten
   end
 
+  def straight_flush
+    return @cards if straight and flush
+  end
+
   private
 
   def high_card_from_array(items)

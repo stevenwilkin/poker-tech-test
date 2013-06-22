@@ -173,6 +173,32 @@ describe Hand do
     end
   end
 
+  describe ".straight_flush" do
+    context "with a straight" do
+      let(:hand) { Hand.new("2S 3D 4C 5H 6S") }
+
+      it "is nil" do
+        hand.straight_flush.should be_nil
+      end
+    end
+
+    context "with a flush" do
+      let(:hand) { Hand.new("2S 4S 8S TS AS") }
+
+      it "is nil" do
+        hand.straight_flush.should be_nil
+      end
+    end
+
+    context "with a straight flush" do
+      let(:hand) { Hand.new("2S 3S 4S 5S 6S") }
+
+      it "returns the straight flush" do
+        hand.straight_flush.sort.should == hand.cards.sort
+      end
+    end
+  end
+
   describe ".<=>" do
     context "high cards of differing values" do
       let(:highcard_AS) { Hand.new("2S 2S 8S TS AS") }
