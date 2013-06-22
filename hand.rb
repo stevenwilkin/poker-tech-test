@@ -13,23 +13,17 @@ class Hand
   end
 
   def <=>(other)
-    my_cards = @cards.dup
-    other_cards = other.cards.dup
-    loop do
-      my_high_card = high_card_from_array(my_cards)
-      other_high_card = high_card_from_array(other_cards)
-      if my_high_card != other_high_card
-        return my_high_card <=> other_high_card
-      end
-      my_cards = my_cards - [my_high_card]
-      other_cards = other_cards - [other_high_card]
-    end
+    self.highest_combination_rank <=> other.highest_combination_rank
   end
 
   def highest_combination
     COMBINATIONS.each do |combination|
       return combination unless self.send(combination).nil?
     end
+  end
+
+  def highest_combination_rank
+    COMBINATIONS.reverse.index(self.highest_combination)
   end
 
   def high_card
