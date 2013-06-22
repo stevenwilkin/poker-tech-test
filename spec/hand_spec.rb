@@ -12,5 +12,21 @@ describe Hand do
     it "has 5 cards" do
       hand.cards.should have(5).cards
     end
+
+    context "first card" do
+      let(:card) { hand.cards.first }
+
+      it "is the 2S" do
+        card.should == Card.new("2S")
+      end
+    end
+
+    context "last card" do
+      let(:card) { hand.cards.last }
+
+      it "is the AS" do
+        card.should == Card.new("AS")
+      end
+    end
   end
 end
