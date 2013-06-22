@@ -116,4 +116,8 @@ class Hand
       end
     end
   end
+
+  def compare_straight_flush(items, other_items)
+    compare_high_card(items, other_items)
+  end
 end

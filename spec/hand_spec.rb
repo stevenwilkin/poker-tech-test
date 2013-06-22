@@ -255,6 +255,15 @@ describe Hand do
       pair.should be > high_card
     end
 
+    context "two straight flushs" do
+      let(:straight_flush_1) { Hand.new("2S 3S 4S 5S 6S") }
+      let(:straight_flush_2) { Hand.new("3S 4S 5S 6S 7S") }
+
+      it "wins by high card" do
+        straight_flush_2.should be > straight_flush_1
+      end
+    end
+
     context "high cards" do
       context "with differing values" do
         let(:highcard_AS) { Hand.new("2D 3S 8S TS AS") }
