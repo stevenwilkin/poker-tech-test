@@ -3,6 +3,9 @@ class Hand
 
   attr_accessor :cards
 
+  COMBINATIONS = [:straight_flush, :four_of_a_kind, :full_house, :flush,
+    :straight, :three_of_a_kind, :two_pairs, :pair, :high_card]
+
   def initialize(cards)
     @cards = cards.split(" ").map do |name|
       Card.new(name)
@@ -20,6 +23,12 @@ class Hand
       end
       my_cards = my_cards - [my_high_card]
       other_cards = other_cards - [other_high_card]
+    end
+  end
+
+  def highest_combination
+    COMBINATIONS.each do |combination|
+      return combination unless self.send(combination).nil?
     end
   end
 
@@ -95,5 +104,6 @@ class Hand
     remainder.each do |card|
       return ([card] + the_pair) if the_pair.member? card
     end
+    nil
   end
 end
