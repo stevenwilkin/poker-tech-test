@@ -10,4 +10,8 @@ class Hand
   def high_card
     @cards.sort.last
   end
+
+  def has_a_pair?
+    @cards.uniq { |card| card.value }.count == 4
+  end
 end

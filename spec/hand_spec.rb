@@ -30,12 +30,30 @@ describe Hand do
     end
   end
 
-  describe "high_card" do
+  describe ".high_card" do
     let(:cards) { "2S 4D 8C AS TH" }
     let(:hand) { Hand.new(cards) }
 
     it "is the AS" do
       hand.high_card.should == Card.new("AS")
+    end
+  end
+
+  describe ".has_a_pair?" do
+    context "without a pair" do
+      let(:hand) { Hand.new("2S 4D 8C TH AS") }
+
+      it "is false" do
+        hand.should_not have_a_pair
+      end
+    end
+
+    context "with a pair" do
+      let(:hand) { Hand.new("2S 2D 8C TH AS") }
+
+      it "is true" do
+        hand.should have_a_pair
+      end
     end
   end
 end
