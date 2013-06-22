@@ -49,6 +49,13 @@ class Hand
     end
   end
 
+  def straight
+    for i in 0..(@cards.length - 2)
+      return unless @cards[i].rank == @cards[i + 1].rank - 1
+    end
+    @cards
+  end
+
   private
 
   def high_card_from_array(items)

@@ -101,6 +101,24 @@ describe Hand do
     end
   end
 
+  describe "" do
+    context "without a straight" do
+      let(:hand) { Hand.new("2S 4D 8C TH AS") }
+
+      it "is nil" do
+        hand.straight.should be_nil
+      end
+    end
+
+    context "with a straight" do
+      let(:hand) { Hand.new("2S 3D 4C 5H 6S") }
+
+      it "returns the straight" do
+        hand.straight.sort.should == hand.cards.sort
+      end
+    end
+  end
+
   describe ".<=>" do
     context "high cards of differing values" do
       let(:highcard_AS) { Hand.new("2S 2S 8S TS AS") }
