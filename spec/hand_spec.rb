@@ -8,5 +8,9 @@ describe Hand do
     it "creates a new hand" do
       hand.should be_a Hand
     end
+
+    it "has 5 cards" do
+      hand.cards.should have(5).cards
+    end
   end
 end
