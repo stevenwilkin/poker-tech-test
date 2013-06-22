@@ -143,4 +143,8 @@ class Hand
 
     threes.first <=> other_threes.first
   end
+
+  def compare_flush(items, other_items)
+    compare_high_card(items, other_items)
+  end
 end

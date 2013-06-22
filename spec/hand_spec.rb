@@ -282,6 +282,15 @@ describe Hand do
       end
     end
 
+    context "two flushes" do
+      let(:flush_1) { Hand.new("2S 4S 8S TS QS") }
+      let(:flush_2) { Hand.new("2S 4S 8S TS AS") }
+
+      it "wins by high card" do
+        flush_2.should be > flush_1
+      end
+    end
+
     context "two high cards" do
       context "with differing values" do
         let(:highcard_AS) { Hand.new("2D 3S 8S TS AS") }
